@@ -17,7 +17,7 @@ public class Application {
    private static final Logger logger = LogManager.getLogger();
 
    public static void main(String[] args) throws Exception {
-      DefaultCacheManager defaultCacheManager = new DefaultCacheManager(INFINISPAN_CONFIGURATION);
+      DefaultCacheManager defaultCacheManager = new DefaultCacheManager(Application.class.getClassLoader().getResourceAsStream(INFINISPAN_CONFIGURATION));
       AdvancedCache<String, String> cache = defaultCacheManager.<String, String>getCache("another").getAdvancedCache();
 
       logger.error("==== Starting the test ====");
