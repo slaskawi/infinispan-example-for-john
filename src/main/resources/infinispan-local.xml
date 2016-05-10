@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+   Based on https://github.com/Commonjava/indy/blob/290131d6c726aac5243cc9fc5bedfbf5d811715b/subsys/infinispan/src/main/resources/infinispan.xml#L29
+-->
+
+<infinispan
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:infinispan:config:7.0 http://infinispan.org/schemas/infinispan-config-8.2.xsd"
+        xmlns="urn:infinispan:config:8.2">
+
+   <cache-container default-cache="default" statistics="true">
+      <jmx domain="Infinispan" />
+      <local-cache name="another">
+         <eviction size="10" type="COUNT"/>
+         <!-- If we don't use notifications, we don't need passivation -->
+         <!--<persistence passivation="true">-->
+         <persistence>
+            <!--<file-store shared="false" preload="false" fetch-state="true" path="./content-index">-->
+            <file-store fetch-state="true" path="./content-index" />
+         </persistence>
+      </local-cache>
+   </cache-container>
+
+</infinispan>
